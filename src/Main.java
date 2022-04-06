@@ -1,18 +1,26 @@
-public class Main
+import java.util.Scanner;
+
+public class Main // changed for this problem -- comment out last problem
 {
     public static void main(String[] args)
     {
-        System.out.println(factorial(5));
-        System.out.println(factorial(10));
+        Scanner input = new Scanner(System.in);
+        System.out.print("How many initial bacteria? ");
+        int initial = input.nextInt();
+        System.out.print("How many hours will the bacteria sit? ");
+        int hours = input.nextInt();
+        long bacteria = numBacteriaAlive(hours, initial);
+        System.out.println("After " + hours + ", there will be " + bacteria + " bacteria");
     }
 
-    public static int factorial(int num)
+    public static long numBacteriaAlive(int hour, int initialAmount)
     {
-        int answer = 1;
-        for (int i = num; i > 0; i--)
+        if(hour == 0)
         {
-            answer *= i;
+            return initialAmount;
         }
-        return answer;
+        return numBacteriaAlive(hour - 1, initialAmount) * 3;
     }
 }
+
+
